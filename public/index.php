@@ -1,128 +1,55 @@
 <?php
 
-class Auto
-{
-    /**
-     * @var int
-     */
-    private int $zitplaatsen = 2;
-    /**
-     * @var string
-     */
-    private string $kleur='geel';
-    /**
-     * @var int
-     */
-    private int $passagiers=0;
-    /**
-     * @var int
-     */
-    public int $snelheid = 0;
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
-    public function __construct(int $zitplaatsen = 4, string $kleur='roze' )
-    {
-        $this->zitplaatsen = $zitplaatsen;
-        $this->kleur = $kleur;
-    }
+define('LARAVEL_START', microtime(true));
 
-    /**
-     * Voeg een passagier toe en geef terug hoeveel mensen er nu zijn.
-     * @return int
-     */
-    public function nieuwe_passagier(): int
-    {
-        if ( $this->passagiers >= $this->zitplaatsen ) {
-            echo 'Er zitten al genoeg passagiers in de auto.';
-            return $this->passagiers;
-        }
-        $this->passagiers++;
-        return $this->passagiers;
-    }
+/*
+|--------------------------------------------------------------------------
+| Check If The Application Is Under Maintenance
+|--------------------------------------------------------------------------
+|
+| If the application is in maintenance / demo mode via the "down" command
+| we will load this file so that any pre-rendered content can be shown
+| instead of starting the framework, which could cause an exception.
+|
+*/
 
-    /**
-     * Pas de snelheid aan
-     *
-     * @param int $speed
-     * @return int
-     */
-    public function versnel(int $speed = 0): int
-    {
-        $this->snelheid += $speed;
-
-        return $this->snelheid;
-    }
-
-    /**
-     * Verminder de snelheid
-     *
-     * @param int $kracht
-     * @return int
-     */
-    public function rem(int $kracht =  0): int
-    {
-        $this->snelheid -= $kracht;
-        return $this->snelheid;
-    }
-
-    /**
-     * Haal de snelheid op
-     *
-     * @return int
-     */
-    public function get_speed(): int
-    {
-        return $this->snelheid;
-    }
-
-    /**
-     * Haal het aantal passagiers op
-     *
-     * @return integer
-     */
-    public function aantal_passagiers() : int {
-        return $this->passagiers;
-    }
+if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
+    require $maintenance;
 }
 
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| this application. We just need to utilize it! We'll simply require it
+| into the script here so we don't need to manually load our classes.
+|
+*/
 
-/**
- * Deze class extends de auto class
- * Daarnaast zorgt hij dat de snelheid minder op loopt.
- */
-class Volvo extends Auto {
-    /**
-     * Pas de snelheid aan
-     *
-     * @param int $speed
-     * @return int
-     */
-    public function versnel(int $speed = 0): int
-    {
-        $this->snelheid += ( $speed / 2 );
+require __DIR__.'/../vendor/autoload.php';
 
-        return $this->snelheid;
-    }
-}
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request using
+| the application's HTTP kernel. Then, we will send the response back
+| to this client's browser, allowing them to enjoy our application.
+|
+*/
 
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
+$kernel = $app->make(Kernel::class);
 
-$bmw = new Auto(2, 'rood');
-$volvo = new Volvo(4, 'rood');
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
 
-echo 'bmw snelheid=' . $bmw->get_speed() . '<br>';
-$bmw->versnel(30);
-echo 'bmw snelheid=' . $bmw->get_speed() . '<br>';
-
-echo 'volvo snelheid=' . $volvo->get_speed() . '<br>';
-$volvo->versnel(30);
-echo 'volvo snelheid=' . $volvo->get_speed() . '<br>';
-
-
-$bmw->nieuwe_passagier();
-echo 'bmw passagiers=' . $bmw->aantal_passagiers() . '<br>';
-$bmw->nieuwe_passagier();
-$bmw->nieuwe_passagier();
-$bmw->nieuwe_passagier();
-$bmw->nieuwe_passagier();
-$bmw->nieuwe_passagier();
-echo 'bmw passagiers=' . $bmw->aantal_passagiers() . '<br>';
+$kernel->terminate($request, $response);
