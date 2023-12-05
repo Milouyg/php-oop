@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/app.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Base</title>
 </head>
 
@@ -13,9 +12,15 @@
     <header class="flex flex-row justify-between px-8 h-1/5">
         <h1 class="flex text-3xl font-bold underline items-center">Logo</h1>
         <ul class="flex gap-4 items-center">
-            <li class="hover:cursor-pointer">Home</li>
-            <li class="hover:cursor-pointer">Over ons</li>
-            <li class="hover:cursor-pointer">Contact</li>
+            <li class="hover:cursor-pointer">
+                <a href="">Home</a> 
+            </li>
+            <li class="hover:cursor-pointer">
+                <a href="">Projecten</a> 
+            </li>
+            <li class="hover:cursor-pointer">
+                <a href="">Contact</a> 
+            </li>
         </ul>
     </header>
     <section class="px-8 flex flex-col items-center h-3/5">
