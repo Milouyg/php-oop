@@ -10,18 +10,8 @@
 
 <body class="flex gap-4 flex-col h-screen">
     <header class="flex flex-row justify-between px-8 h-1/5">
-        <h1 class="flex text-3xl font-bold underline items-center">Logo</h1>
-        <ul class="flex gap-4 items-center">
-            <li class="hover:cursor-pointer">
-                <a href="">Home</a> 
-            </li>
-            <li class="hover:cursor-pointer">
-                <a href="">Projecten</a> 
-            </li>
-            <li class="hover:cursor-pointer">
-                <a href="">Contact</a> 
-            </li>
-        </ul>
+        <h1 class="flex text-3xl font-bold underline items-center"><a href="{{ route('homepage') }}">Logo</a></h1>
+        @include('_navigation')
     </header>
     <section class="px-8 flex flex-col items-center h-3/5">
         <h1 class="font-bold">Over ons</h1>
