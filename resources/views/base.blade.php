@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/dist/app.css" rel="stylesheet">
-    <title>Base</title>
-</head>
-
-<body class="flex gap-4 flex-col h-screen">
-    @include('_navigation')
+@section('content')
     <section class="px-8 flex flex-col items-center h-3/5">
         <h1 class="font-bold">Welkom!</h1>
         <p class="">
@@ -20,9 +11,4 @@
             Veel plezier met het ontdekken van Amsterdam!
         </p>
     </section>
-    <footer class="px-8 h-1/5 flex justify-center items-center">
-        <p class="">Dit is de footer</p>
-    </footer>
-</body>
-
-</html>
+@endsection
