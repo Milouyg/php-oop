@@ -19,7 +19,10 @@ class ProjectController extends Controller
         $projects->title = 'mijn titel';
         // sla het model op
         $projects->save();
+    }
 
-        
+    public function show(Project $project):string {
+        dump($project);
+        return view('project.show', ['project'=>$project]);
     }
 }

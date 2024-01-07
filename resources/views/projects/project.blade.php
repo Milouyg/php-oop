@@ -16,7 +16,7 @@
         <article class="relative flex flex-col items-center w-72 h-48 shadow-lg bg-white rounded-lg gap-2">
             <img class="object-cover w-72 h-36 relative" src="https://placehold.co/300x150" alt="">
             <h1 class="absolute left-4"> {{$project->title}} </h1>
-            <button class="bg-red-600 rounded gap-2 absolute right-4 bottom-2 px-1 text-white hover:cursor-pointer">Klik hier</button>
+            <a href="{{route('project.show', $project)}}" class="bg-red-600 rounded gap-2 absolute right-4 bottom-2 px-1 text-white hover:cursor-pointer">Klik hier</a>
         </article>
         @endforeach
     </main>
