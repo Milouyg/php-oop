@@ -9,7 +9,7 @@
 </head>
 <body>
 
-        @include('_navigation')
+    @include('layouts.partials.navigation')
 
     <main class=" flex gap-4 w-screen h-screen bg-slate-200 p-4">
         @foreach ($projects as $project)

@@ -21,8 +21,8 @@ class ProjectController extends Controller
         $projects->save();
     }
 
-    public function show(Project $project):string {
+    public function show(Project $project) {
         dump($project);
-        return view('project.show', ['project'=>$project]);
+        return view('projects.show', ['project'=>$project]);
     }
 }
