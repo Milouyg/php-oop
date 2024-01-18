@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 class ProjectAdminController extends Controller
 {
@@ -11,7 +12,8 @@ class ProjectAdminController extends Controller
      */
     public function index()
     {
-        return 'Dit is mijn index';
+        $projects = Project::paginate(2);
+        return view('dashboard.projects.index', ['projects'=>$projects]);
     }
 
     /**
@@ -19,7 +21,7 @@ class ProjectAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.projects.create');
     }
 
     /**
@@ -27,7 +29,7 @@ class ProjectAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dump( $request->all() );
     }
 
     /**

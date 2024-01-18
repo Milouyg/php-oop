@@ -20,26 +20,28 @@ Route::get('/', function () {
     return view('base');
 })->name('homepage');
 
-
-
-
-
 require __DIR__ . '/auth.php';
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.project');
 Route::get('/projects/add', [ProjectController::class, 'add'])->name('project.add');
-
 Route::get('project/{project}', [ProjectController::class, 'show'])->name('project.show');
+// Route::get('project/{project}', [ProjectController::class, 'create'])->name('project.create');
 
 Route::prefix('/dashboard')
     ->middleware(['auth', 'verified'])
     ->group(function () {
         Route::get(
             '/',
-            function () {
-                return view('dashboard');
-            }
+            [ProjectAdminController::class, 'index'] // load the index function of the ProjectAdminController, we have access to the projects
         )->name('dashboard');
+        Route::get(
+            'create',
+            [ProjectAdminController::class, 'create'] 
+        )->name('dashboard/create');
+        Route::post(
+            'store',
+            [ProjectAdminController::class, 'store'] 
+        )->name('dashboard/store');
 
         Route::resources(
             [
