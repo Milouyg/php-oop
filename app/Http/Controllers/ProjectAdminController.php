@@ -33,7 +33,10 @@ class ProjectAdminController extends Controller
             'title' => 'required|unique:projects|max:255',
             'description' => 'required',
         ]);
-        dd($valid);
+        
+        $project = new Project($valid);
+        $project->save();
+        return redirect( route('dashboard', $project->id ) );
     }
 
     /**
