@@ -52,7 +52,7 @@ class ProjectAdminController extends Controller
      */
     public function edit(ProjectAdminController $projectAdminController)
     {
-        //
+        return view('dashboard/projects/edit', ['project'=>$projectAdminController]);
     }
 
     /**

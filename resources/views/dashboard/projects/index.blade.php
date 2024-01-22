@@ -15,9 +15,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Projecten overzicht!") }}
-                    @foreach($projects as $project)
-                    <a href="{{$project->title}}">{{ $project->title }}</a><br>
-                    @endforeach
+                    <ul class="flex flex-col">
+                        @foreach($projects as $project)
+                        <li class="flex flex-row justify-between">
+                            <span>{{ $project->title }}</span>
+                            <a href="{{route('dashboard/edit', $project)}}" class="text-red-600">wijzigen</a>
+                        </li>
+                        @endforeach
+                    </ul>
                     {{$projects->links()}}
                 </div>
             </div>

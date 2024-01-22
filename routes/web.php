@@ -38,6 +38,10 @@ Route::prefix('/dashboard')
             'create',
             [ProjectAdminController::class, 'create'] 
         )->name('dashboard/create');
+        Route::get(
+            'edit',
+            [ProjectAdminController::class, 'edit'] 
+        )->name('dashboard/edit');
         Route::post(
             'store',
             [ProjectAdminController::class, 'store'] 
