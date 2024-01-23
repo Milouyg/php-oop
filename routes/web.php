@@ -46,6 +46,10 @@ Route::prefix('/dashboard')
             'update',
             [ProjectAdminController::class, 'update'] 
         )->name('dashboard/update');
+        Route::delete(
+            'delete',
+            [ProjectAdminController::class, 'delete'] 
+        )->name('dashboard/delete');
         Route::post(
             'store',
             [ProjectAdminController::class, 'store'] 

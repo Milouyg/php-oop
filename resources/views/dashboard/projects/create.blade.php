@@ -15,7 +15,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Project aanmaken!") }}
-                    @include('dashboard/projects/form', ['route'=>route('dashboard/store'), 'method'=>'post'])
+                    <form method="post" action="{{route('dashboard/store')}}" class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                        @include('dashboard/projects/form', ['route'=>route('dashboard/store'), 'method'=>'post'])
+                    </form>
                 </div>
             </div>
         </div>

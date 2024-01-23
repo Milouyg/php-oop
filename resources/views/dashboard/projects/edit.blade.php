@@ -15,7 +15,10 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h2>Je gaat nu dit project bewerken: {{$project->title}}</h2>
-                    @include('dashboard/projects/form', ['route'=>route('dashboard/update', $project), 'method'=>'put'])
+                    <form method="post" action="{{route('dashboard/update', ['project' => $project]) }}" class="bg-white rounded px-8 pt-6 pb-8 mb-4"> 
+                        @method('put')
+                        @include('dashboard/projects/form', ['project' => $project])
+                    </form>
                 </div>
             </div>
         </div>
