@@ -42,6 +42,10 @@ Route::prefix('/dashboard')
             'edit',
             [ProjectAdminController::class, 'edit'] 
         )->name('dashboard/edit');
+        Route::get(
+            'update',
+            [ProjectAdminController::class, 'update'] 
+        )->name('dashboard/update');
         Route::post(
             'store',
             [ProjectAdminController::class, 'store'] 

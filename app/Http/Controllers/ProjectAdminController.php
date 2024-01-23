@@ -42,7 +42,7 @@ class ProjectAdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProjectAdminController $projectAdminController)
+    public function show(Project $project)
     {
         //
     }
@@ -50,24 +50,33 @@ class ProjectAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProjectAdminController $projectAdminController)
+    public function edit(Project $project)
     {
-        return view('dashboard/projects/edit', ['project'=>$projectAdminController]);
+        return view('dashboard/projects/edit', ['project'=>$project]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProjectAdminController $projectAdminController)
+    public function update(Request $request, Project $project)
     {
-        //
+        $valid_data = $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        $project->update($valid_data);
+        $project->save();
+        
+        return redirect( route('project.show', $project->id ) );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProjectAdminController $projectAdminController)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect(route('project.index'))->with('alert', 'Het item '.$project->title.' is nu weg.');
     }
 }
